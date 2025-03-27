@@ -120,16 +120,70 @@ main:   li a0, PBEN+PAEN    // Prepare to turn on GPIOB...
         addi a3,a3,1        // ...advance to next pin...
         bne a3,a4, 1b       // ...continue, if not done!   
 ### EDIT HERE
-        li t0, 0
+reset:
+        la t0, code // Load memory address of code + LED pattern 
+        lh t1, 0(t0) // Load Code
+        li t2, 0 // Switch check counter (off-on-off)
+        li t3, 0 // Correct answers
+        li t4, 0 // Rounds
+        lh a7, 2(t0) //Load LED pattern
+
 1:      li a0, GPIOA        // Prepare to read GPIOA...
         call gpiois         // ...and get the value!
         srli a1,a1,5        // ...shift it down 5 steps...
-        andi a1,a1,0x07     // ...mask out 3 lsb...
+        andi a1,a1,0xF     // ...mask out 4 lsb...
+        
+        srli a3, a1, 3 // Shift to get only trigger switch
+        call MSB_check // Check if trigger switch has changed
+        call sleep // Delay :P
+        li t0, 0x2 // Load t0 with 2 temporarily
+        bne t2, t0, 1b // if trigger switch hasnt been off-on-off, loop again
+        li t2, 0 // otherwise reset counter
+
+        call numb_check // check if number inputted matches code
+
         li a0, GPIOB        // Prepare to write GPIOB...
-        li a2, 0x07 
-        bne t0, zero, 1b
-        add t0, a1, zero            // ...the 3 lsb...
+        andi a1, a7, 0x07 // mask out LED pattern to only get LSB
+        li t0, 4 // Set limit for number entries temporarily
+        bne t0, t3, 2f // if all answers correct, i.e t3 = 4 (only in final round)
+        not a1, a1 // then invert pattern 000->111 
+2:      srli a7, a7, 4 // right shift LED pattern to get next led formation
+        srli t1, t1, 4 // also right shift code to next expected digit
+        li a2, 0x07         // ...the 3 lsb...
         call gpiobo         // ...and write the new value!
-2:      j 1b                // Repeat forever
+
+        beq t4, t0, 3f  // check if 4 rounds have passed
+        j 1b                // if no, jump back to start and read another digit
+3:      bne t3, t0, reset // if yes, check if there have been 4 correct answers
+lock:   j lock // if yes, lock device by looping foreverrrrrrr
+
+sleep:  li a4, 12500000 // set time for sleep, 50MhZ -> 12500000 = 0.25 seconds
+1:      addi a4, a4, -1 // remove 1 from counter
+        bnez a4, 1b // if timer is not zero, go back to start of loop
+        ret // otherwise return to where you came from
+
+MSB_check:
+        bnez t2, 2f //check if t2 is not 0, if yes, go to nearest title 2 forward
+        j 1f //if no, go to nearest title 1 forward
+1:
+        bnez a3, 4f // - check if a1 is not 0, if yes, go to nearest 4 forward
+        ret // if no, return
+2:
+        beqz a3, 4f // check if a3 is 0, if yes, go to nearest 4 forward
+        ret // if no, return
+
+4:      addi t2, t2, 1 // add 1 to switch check counter (off-on-off) 
+        ret // then return
+
+numb_check:
+        andi a1, a1, 0x07 //mask out 3 LSB from input
+        andi t0, t1, 0x07 //mask out 3 LSB from code
+        bne a1, t0, 1f // Compare input to code, if not the same, jump to nearest 1 forward
+        addi t3, t3, 1 // if the same, add 1 to correct answer counter
+1:      addi t4, t4, 1 // add 1 to round counter
+        ret // go back home
+.data
+code:   .half 0x5027
+        .half 0x0624
 
 .end

@@ -50,7 +50,9 @@ gpiobo: and a1, a1, a2      // (Clear all patterns bits that are not target bits
         xor a2, a2, a1      // Find zeros in targeted bits...
         slli a2, a2, 16     // ...position clear requests...
         or a1, a1, a2       // ...add set requests...
-        sw a1, BOP(a0)      // ...then execute...
+        beqz a5, 1f
+        not a1, a1
+1:      sw a1, BOP(a0)      // ...then execute...
         ret                 // ...and return to caller!
 
 // GPIBC Bit Clear /////////////////////////////////////////////////// 1.0 / AC ///
@@ -101,7 +103,6 @@ rcu2en: li t0,RCU           // t0 points to RCU...
 .global main
 main:   li a0, PBEN+PAEN    // Prepare to turn on GPIOB...
         call rcu2en         // ...do the set-up!
-
         li a0, GPIOB        // Prepare to init GPIOB...
         li a1, GPIO_PP      // ...as Push-Pull Output...
         li a2, GPIO_50      // ...with max 50MHz rate...
@@ -110,26 +111,60 @@ main:   li a0, PBEN+PAEN    // Prepare to turn on GPIOB...
 1:      call gpioi          // ...do the set-up!
         addi a3,a3,1        // ...advance to next pin...
         bne a3,a4, 1b       // ...continue, if not done!  
-
         li a0, GPIOA        // Prepare to init GPIOA...
         li a1, GPIO_AM      // ...in Analoge mode...
         li a2, GPIO_FI      // ...with High-Z...
         li a3, 5            // ...for pin 5...
         li a4, 9            // ...to pin 8...
+
 1:      call gpioi          // ...do the set-up!
         addi a3,a3,1        // ...advance to next pin...
-        bne a3,a4, 1b       // ...continue, if not done!   
+        bne a3,a4, 1b       // ...continue, if not done!  
+         
 ### EDIT HERE
-        li t0, 0
+
 1:      li a0, GPIOA        // Prepare to read GPIOA...
         call gpiois         // ...and get the value!
         srli a1,a1,5        // ...shift it down 5 steps...
-        andi a1,a1,0x07     // ...mask out 3 lsb...
-        li a0, GPIOB        // Prepare to write GPIOB...
-        li a2, 0x07 
-        bne t0, zero, 1b
-        add t0, a1, zero            // ...the 3 lsb...
-        call gpiobo         // ...and write the new value!
-2:      j 1b                // Repeat forever
+        andi a1,a1,0xF     // ...mask out 4 lsb...
+        mv a7,a1 // duplicate a1
+        li t5, 8 // set t5 to 8
+        li a5, 0 // set a5 to 0 (a5 is our pattern inverter in gpioBO)
+        blt a7, t5, 2f // check if a7 is less than t5(a1 < 8), if yes, go to nearest 2 forward  (check for inverter switch)
+        li a5, 1 // if no, set a5 to 1, i.e invert pattern
+2:      andi a1, a1, 0x7    // ...mask out 3 lsb...
+        la t1, patterns // load address for pattern
+        li t2, 0 // load t2 with 0
 
+3:      beq t2,a1,break // if a1 is zero, jump to stop
+        addi t1,t1,4 // otherwise add 4 to t1
+        addi t2,t2,1 // and add 1 to t2
+        j 3b // then jump back to nearest 3
+break:  lw a3,0(t1) // load first pattern at current mem pos
+        li t3,4 // set t3 to 4
+        
+main_loop:  
+        li a0, GPIOB        //execute pattern 1
+        andi a1,a3,0x7      // mask out 3 LSB from a3 into a1
+        li a2, 0x7      // load a2 with value 7
+        call gpiobo          // write to LEDs
+        call sleep        // Wait for set duration
+        srli a3,a3,4    // Right shift a3 into next pattern 
+        addi t3,t3,-1 // remove 1 from t3
+        bnez t3,main_loop // if t3 is not 0, jump back to start
+        j 1b                //jump to start
+
+sleep:  li t1, 12500000     // set timer to 12.500.000 (50MhZ gives 0.25 seconds)
+1:      addi t1, t1, -1     // remove 1 from timer 
+        bnez t1, 1b       // if timer not 0, repeat
+        ret // go home
+.data
+patterns:   .word 0x0421
+            .word 0x0124
+            .word 0x1010
+            .word 0x4422
+            .word 0x1242
+            .word 0x2010
+            .word 0x4114
+            .word 0x4241
 .end
