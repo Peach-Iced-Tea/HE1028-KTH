@@ -1,0 +1,1259 @@
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 1
+
+
+   1              		.file	"main.c"
+   2              		.option nopic
+   3              		.attribute arch, "rv32i2p0_m2p0_a2p0_c2p0"
+   4              		.attribute unaligned_access, 0
+   5              		.attribute stack_align, 16
+   6              		.text
+   7              	.Ltext0:
+   8              		.cfi_sections	.debug_frame
+   9              		.section	.text.startup.main,"ax",@progbits
+  10              		.align	1
+  11              		.globl	main
+  13              	main:
+  14              	.LFB2:
+  15              		.file 1 "main.c"
+   1:main.c        **** #include "gd32vf103.h"
+   2:main.c        **** #include "drivers.h"
+   3:main.c        **** #include "lcd.h"
+   4:main.c        **** int main(void){
+  16              		.loc 1 4 15
+  17              		.cfi_startproc
+   5:main.c        ****     int ms=0, s=0, key, pKey=-1, c=0, idle=0;
+  18              		.loc 1 5 5
+  19              	.LVL0:
+   6:main.c        ****     int lookUpTbl[16]={1,4,7,14,2,5,8,0,3,6,9,15,10,11,12,13};
+  20              		.loc 1 6 5
+   4:main.c        ****     int ms=0, s=0, key, pKey=-1, c=0, idle=0;
+  21              		.loc 1 4 15 is_stmt 0
+  22 0000 6971     		addi	sp,sp,-304
+  23              	.LCFI0:
+  24              		.cfi_def_cfa_offset 304
+  25              		.loc 1 6 9
+  26 0002 B7050000 		lui	a1,%hi(.LANCHOR0)
+   4:main.c        ****     int ms=0, s=0, key, pKey=-1, c=0, idle=0;
+  27              		.loc 1 4 15
+  28 0006 23248112 		sw	s0,296(sp)
+  29              		.loc 1 6 9
+  30 000a 13060004 		li	a2,64
+  31              		.cfi_offset 8, -8
+  32 000e 13840500 		addi	s0,a1,%lo(.LANCHOR0)
+  33 0012 E800     		addi	a0,sp,76
+  34 0014 93850500 		addi	a1,a1,%lo(.LANCHOR0)
+   4:main.c        ****     int ms=0, s=0, key, pKey=-1, c=0, idle=0;
+  35              		.loc 1 4 15
+  36 0018 23261112 		sw	ra,300(sp)
+  37 001c 23229112 		sw	s1,292(sp)
+  38 0020 232C4111 		sw	s4,280(sp)
+  39 0024 232A5111 		sw	s5,276(sp)
+  40 0028 23286111 		sw	s6,272(sp)
+  41 002c 23267111 		sw	s7,268(sp)
+  42 0030 23248111 		sw	s8,264(sp)
+  43 0034 23229111 		sw	s9,260(sp)
+  44 0038 2320A111 		sw	s10,256(sp)
+  45 003c EEDF     		sw	s11,252(sp)
+  46 003e 23202113 		sw	s2,288(sp)
+  47 0042 232E3111 		sw	s3,284(sp)
+  48              		.cfi_offset 1, -4
+  49              		.cfi_offset 9, -12
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 2
+
+
+  50              		.cfi_offset 20, -24
+  51              		.cfi_offset 21, -28
+  52              		.cfi_offset 22, -32
+  53              		.cfi_offset 23, -36
+  54              		.cfi_offset 24, -40
+  55              		.cfi_offset 25, -44
+  56              		.cfi_offset 26, -48
+  57              		.cfi_offset 27, -52
+  58              		.cfi_offset 18, -16
+  59              		.cfi_offset 19, -20
+  60              		.loc 1 6 9
+  61 0046 97000000 		call	memcpy
+  61      E7800000 
+  62              	.LVL1:
+   7:main.c        ****     int dac=0, speed=-100;
+  63              		.loc 1 7 5 is_stmt 1
+   8:main.c        ****     int adcr, tmpr;
+  64              		.loc 1 8 5
+   9:main.c        ****     int colors[9]={WHITE, BLACK, BLUE, RED, MAGENTA, GREEN, CYAN, YELLOW, DARKBLUE};
+  65              		.loc 1 9 5
+  66              		.loc 1 9 9 is_stmt 0
+  67 004e 93050404 		addi	a1,s0,64
+  68 0052 13064002 		li	a2,36
+  69 0056 2810     		addi	a0,sp,40
+  70 0058 97000000 		call	memcpy
+  70      E7800000 
+  71              	.LVL2:
+  10:main.c        ****     char digits[10][10]={"Zero ","One  ","Two  ","Three","Four ","Five ","Six  ","Seven","Eight","N
+  72              		.loc 1 10 5 is_stmt 1
+  73              		.loc 1 10 10 is_stmt 0
+  74 0060 93054406 		addi	a1,s0,100
+  75 0064 13064006 		li	a2,100
+  76 0068 6801     		addi	a0,sp,140
+  77 006a 97000000 		call	memcpy
+  77      E7800000 
+  78              	.LVL3:
+  11:main.c        ****     int entryMade = 0;
+  79              		.loc 1 11 5 is_stmt 1
+  12:main.c        ****     int temp[2] = {0,0};
+  80              		.loc 1 12 5
+  13:main.c        ****     int posA[2] = {0,0};
+  81              		.loc 1 13 5
+  14:main.c        ****     int posB[2] = {0,0};
+  82              		.loc 1 14 5
+  15:main.c        ****     int col = 0;
+  83              		.loc 1 15 5
+  16:main.c        ****     int keyNum;
+  84              		.loc 1 16 5
+  17:main.c        ****     int entryNr = 0;
+  85              		.loc 1 17 5
+  18:main.c        ****     t5omsi();                               // Initialize timer5 1kHz
+  86              		.loc 1 18 5
+  87 0072 97000000 		call	t5omsi
+  87      E7800000 
+  88              	.LVL4:
+  19:main.c        ****     colinit();                              // Initialize column toolbox
+  89              		.loc 1 19 5
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 3
+
+
+  90 007a 97000000 		call	colinit
+  90      E7800000 
+  91              	.LVL5:
+  20:main.c        ****     l88init();                              // Initialize 8*8 led toolbox
+  92              		.loc 1 20 5
+  93 0082 97000000 		call	l88init
+  93      E7800000 
+  94              	.LVL6:
+  21:main.c        ****     keyinit();                              // Initialize keyboard toolbox
+  95              		.loc 1 21 5
+  96 008a 97000000 		call	keyinit
+  96      E7800000 
+  97              	.LVL7:
+  22:main.c        ****     Lcd_SetType(LCD_NORMAL);//INVERTED);                // or use LCD_INVERTED!
+  98              		.loc 1 22 5
+  99 0092 0145     		li	a0,0
+ 100 0094 97000000 		call	Lcd_SetType
+ 100      E7800000 
+ 101              	.LVL8:
+  23:main.c        ****     Lcd_Init();
+ 102              		.loc 1 23 5
+  24:main.c        ****     LCD_Clear(RED);
+ 103              		.loc 1 24 5 is_stmt 0
+ 104 009c 4164     		li	s0,65536
+  23:main.c        ****     Lcd_Init();
+ 105              		.loc 1 23 5
+ 106 009e 97000000 		call	Lcd_Init
+ 106      E7800000 
+ 107              	.LVL9:
+ 108              		.loc 1 24 5 is_stmt 1
+ 109 00a6 13050480 		addi	a0,s0,-2048
+ 110 00aa 97000000 		call	LCD_Clear
+ 110      E7800000 
+ 111              	.LVL10:
+  25:main.c        ****     LCD_ShowStr(10, 10, "HEARTBEAT:", WHITE, TRANSPARENT);
+ 112              		.loc 1 25 5
+ 113 00b2 37060000 		lui	a2,%hi(.LC3)
+ 114 00b6 9306F4FF 		addi	a3,s0,-1
+ 115 00ba 0547     		li	a4,1
+ 116 00bc 13060600 		addi	a2,a2,%lo(.LC3)
+ 117 00c0 A945     		li	a1,10
+ 118 00c2 2945     		li	a0,10
+ 119 00c4 97000000 		call	LCD_ShowStr
+ 119      E7800000 
+ 120              	.LVL11:
+  26:main.c        ****     LCD_Fill(10,30, 20, 40, BLUE);
+ 121              		.loc 1 26 5
+ 122 00cc 7D47     		li	a4,31
+ 123 00ce 93068002 		li	a3,40
+ 124 00d2 5146     		li	a2,20
+ 125 00d4 F945     		li	a1,30
+ 126 00d6 2945     		li	a0,10
+ 127 00d8 97000000 		call	LCD_Fill
+ 127      E7800000 
+ 128              	.LVL12:
+   5:main.c        ****     int lookUpTbl[16]={1,4,7,14,2,5,8,0,3,6,9,15,10,11,12,13};
+ 129              		.loc 1 5 25 is_stmt 0
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 4
+
+
+ 130 00e0 FD57     		li	a5,-1
+ 131 00e2 3ECA     		sw	a5,20(sp)
+  27:main.c        **** 
+  28:main.c        **** 
+  29:main.c        ****     while (1) {
+  30:main.c        ****         idle++;                             // Manage Async events
+  31:main.c        ****         LCD_WR_Queue();                     // Manage LCD com queue!
+  32:main.c        **** 
+  33:main.c        ****         if (t5expq()) {                     // Manage periodic tasks
+  34:main.c        ****             l88row(colset());               // ...8*8LED and Keyboard
+  35:main.c        ****             if (++ms==1000){                // ...One second heart beat
+  36:main.c        ****               ms=0;
+  37:main.c        ****               LCD_ShowStr(80, 10, digits[s%10], WHITE, OPAQUE);
+  38:main.c        ****               l88mem(0,s++);
+  39:main.c        ****             }
+  40:main.c        ****             if ((key=keyscan())>=0) {       // ...Any key pressed?
+  41:main.c        ****               if (pKey==key) c++; else {c=0; pKey=key;}
+  42:main.c        ****               keyNum = lookUpTbl[key];
+  43:main.c        ****               l88mem(1,keyNum+(c<<4));
+  44:main.c        ****               if (entryNr > 0){
+  45:main.c        ****                 switch(keyNum){
+  46:main.c        ****                   case 10:
+  47:main.c        ****                     posA[0] = temp[0];
+  48:main.c        ****                     posA[1] = temp[1];
+  49:main.c        ****                     entryNr == 0;
+  50:main.c        ****                     break;
+  51:main.c        ****                   case 11:
+  52:main.c        ****                     posB[0] = temp[0];
+  53:main.c        ****                     posB[1] = temp[1];
+  54:main.c        ****                     entryNr == 0;
+  55:main.c        ****                     break;
+  56:main.c        ****                   case 12:
+  57:main.c        ****                     col = temp[0];
+  58:main.c        ****                     entryNr == 0;
+  59:main.c        ****                     entryMade = 1;
+  60:main.c        ****                     break;
+  61:main.c        ****                   case 13:
+  62:main.c        ****                     break;
+  63:main.c        ****                   case 14:
+  64:main.c        ****                     break;
+  65:main.c        ****                   case 15:
+  66:main.c        ****                     break;
+  67:main.c        ****                   default:
+  68:main.c        ****                     if (entryNr < 2){
+  69:main.c        ****                       entryNr++;
+  70:main.c        ****                       temp[1] = keyNum;
+  71:main.c        ****                     }
+  72:main.c        ****                     break;
+  73:main.c        ****                 }
+  74:main.c        ****               } else {
+  75:main.c        ****                 switch(keyNum){
+ 132              		.loc 1 75 17
+ 133 00e4 B7070000 		lui	a5,%hi(.L14)
+ 134 00e8 93870700 		addi	a5,a5,%lo(.L14)
+ 135 00ec 3ECC     		sw	a5,24(sp)
+  45:main.c        ****                   case 10:
+ 136              		.loc 1 45 17
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 5
+
+
+ 137 00ee B7070000 		lui	a5,%hi(.L8)
+ 138 00f2 93870700 		addi	a5,a5,%lo(.L8)
+  14:main.c        ****     int col = 0;
+ 139              		.loc 1 14 9
+ 140 00f6 02C6     		sw	zero,12(sp)
+ 141 00f8 814B     		li	s7,0
+  13:main.c        ****     int posB[2] = {0,0};
+ 142              		.loc 1 13 9
+ 143 00fa 014B     		li	s6,0
+ 144 00fc 814A     		li	s5,0
+  12:main.c        ****     int posA[2] = {0,0};
+ 145              		.loc 1 12 9
+ 146 00fe 02C8     		sw	zero,16(sp)
+ 147 0100 014C     		li	s8,0
+  17:main.c        ****     t5omsi();                               // Initialize timer5 1kHz
+ 148              		.loc 1 17 9
+ 149 0102 8144     		li	s1,0
+  15:main.c        ****     int keyNum;
+ 150              		.loc 1 15 9
+ 151 0104 014A     		li	s4,0
+  11:main.c        ****     int temp[2] = {0,0};
+ 152              		.loc 1 11 9
+ 153 0106 0144     		li	s0,0
+   5:main.c        ****     int lookUpTbl[16]={1,4,7,14,2,5,8,0,3,6,9,15,10,11,12,13};
+ 154              		.loc 1 5 34
+ 155 0108 814D     		li	s11,0
+   5:main.c        ****     int lookUpTbl[16]={1,4,7,14,2,5,8,0,3,6,9,15,10,11,12,13};
+ 156              		.loc 1 5 15
+ 157 010a 014D     		li	s10,0
+   5:main.c        ****     int lookUpTbl[16]={1,4,7,14,2,5,8,0,3,6,9,15,10,11,12,13};
+ 158              		.loc 1 5 9
+ 159 010c 814C     		li	s9,0
+  45:main.c        ****                   case 10:
+ 160              		.loc 1 45 17
+ 161 010e 3ECE     		sw	a5,28(sp)
+ 162              	.LVL13:
+ 163              	.L19:
+  76:main.c        ****                   case 10:
+  77:main.c        ****                     LCD_Clear(RED);
+  78:main.c        ****                     break;
+  79:main.c        ****                   case 11:
+  80:main.c        ****                     LCD_ShowStr(144,72, "NF", WHITE, OPAQUE);
+  81:main.c        ****                   break;
+  82:main.c        ****                   case 12:break;
+  83:main.c        ****                   case 13:
+  84:main.c        ****                     if (entryMade == 1){
+  85:main.c        ****                       LCD_DrawLine(posA[0], posA[1], posB[0], posB[1], colors[col]);
+  86:main.c        ****                       entryMade = 0;
+  87:main.c        ****                     }
+  88:main.c        ****                     break;
+  89:main.c        ****                   case 14:
+  90:main.c        ****                     if (entryMade == 1){
+  91:main.c        ****                       Draw_Circle(posA[0], posA[1], posB[0], colors[col]);
+  92:main.c        ****                       entryMade = 0;
+  93:main.c        ****                     }
+  94:main.c        ****                     break;
+  95:main.c        ****                   case 15:
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 6
+
+
+  96:main.c        ****                     LCD_Fill(posA[0], posA[1], posB[0], posB[1], colors[col]);
+  97:main.c        ****                     break;
+  98:main.c        ****                   default:
+  99:main.c        ****                     entryNr++;
+ 100:main.c        ****                     temp[0] = keyNum;
+ 101:main.c        ****                     entryMade = 0;
+ 102:main.c        ****                     break;
+ 103:main.c        ****                 }
+ 104:main.c        ****               }
+ 105:main.c        ****             }
+ 106:main.c        ****             l88mem(2,idle>>8);              // ...Performance monitor
+ 107:main.c        ****             l88mem(3,idle); idle=0;
+ 164              		.loc 1 107 13
+ 165 0110 8149     		li	s3,0
+ 166              	.LVL14:
+ 167              	.L2:
+  29:main.c        ****         idle++;                             // Manage Async events
+ 168              		.loc 1 29 5 is_stmt 1
+  30:main.c        ****         LCD_WR_Queue();                     // Manage LCD com queue!
+ 169              		.loc 1 30 9
+  30:main.c        ****         LCD_WR_Queue();                     // Manage LCD com queue!
+ 170              		.loc 1 30 13 is_stmt 0
+ 171 0112 8509     		addi	s3,s3,1
+ 172              	.LVL15:
+  31:main.c        **** 
+ 173              		.loc 1 31 9 is_stmt 1
+ 174 0114 97000000 		call	LCD_WR_Queue
+ 174      E7800000 
+ 175              	.LVL16:
+  33:main.c        ****             l88row(colset());               // ...8*8LED and Keyboard
+ 176              		.loc 1 33 9
+  33:main.c        ****             l88row(colset());               // ...8*8LED and Keyboard
+ 177              		.loc 1 33 13 is_stmt 0
+ 178 011c 97000000 		call	t5expq
+ 178      E7800000 
+ 179              	.LVL17:
+  33:main.c        ****             l88row(colset());               // ...8*8LED and Keyboard
+ 180              		.loc 1 33 12
+ 181 0124 7DD5     		beq	a0,zero,.L2
+  34:main.c        ****             if (++ms==1000){                // ...One second heart beat
+ 182              		.loc 1 34 13 is_stmt 1
+ 183 0126 97000000 		call	colset
+ 183      E7800000 
+ 184              	.LVL18:
+ 185 012e 97000000 		call	l88row
+ 185      E7800000 
+ 186              	.LVL19:
+  35:main.c        ****               ms=0;
+ 187              		.loc 1 35 13
+  35:main.c        ****               ms=0;
+ 188              		.loc 1 35 16 is_stmt 0
+ 189 0136 850C     		addi	s9,s9,1
+ 190              	.LVL20:
+ 191 0138 9307803E 		li	a5,1000
+ 192 013c 639EFC02 		bne	s9,a5,.L3
+  36:main.c        ****               LCD_ShowStr(80, 10, digits[s%10], WHITE, OPAQUE);
+ 193              		.loc 1 36 15 is_stmt 1
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 7
+
+
+ 194              	.LVL21:
+  37:main.c        ****               l88mem(0,s++);
+ 195              		.loc 1 37 15
+  37:main.c        ****               l88mem(0,s++);
+ 196              		.loc 1 37 43 is_stmt 0
+ 197 0140 A947     		li	a5,10
+ 198 0142 3366FD02 		rem	a2,s10,a5
+  37:main.c        ****               l88mem(0,s++);
+ 199              		.loc 1 37 15
+ 200 0146 0147     		li	a4,0
+ 201 0148 A945     		li	a1,10
+ 202 014a 13050005 		li	a0,80
+  38:main.c        ****             }
+ 203              		.loc 1 38 15
+ 204 014e 13091D00 		addi	s2,s10,1
+  36:main.c        ****               LCD_ShowStr(80, 10, digits[s%10], WHITE, OPAQUE);
+ 205              		.loc 1 36 17
+ 206 0152 814C     		li	s9,0
+  37:main.c        ****               l88mem(0,s++);
+ 207              		.loc 1 37 41
+ 208 0154 3306F602 		mul	a2,a2,a5
+  37:main.c        ****               l88mem(0,s++);
+ 209              		.loc 1 37 15
+ 210 0158 C167     		li	a5,65536
+ 211 015a 9386F7FF 		addi	a3,a5,-1
+ 212 015e 7C01     		addi	a5,sp,140
+ 213 0160 3E96     		add	a2,a5,a2
+ 214 0162 97000000 		call	LCD_ShowStr
+ 214      E7800000 
+ 215              	.LVL22:
+  38:main.c        ****             }
+ 216              		.loc 1 38 15 is_stmt 1
+ 217 016a EA85     		mv	a1,s10
+ 218 016c 0145     		li	a0,0
+ 219 016e 97000000 		call	l88mem
+ 219      E7800000 
+ 220              	.LVL23:
+ 221 0176 4A8D     		mv	s10,s2
+ 222              	.LVL24:
+ 223              	.L3:
+  40:main.c        ****               if (pKey==key) c++; else {c=0; pKey=key;}
+ 224              		.loc 1 40 13
+  40:main.c        ****               if (pKey==key) c++; else {c=0; pKey=key;}
+ 225              		.loc 1 40 22 is_stmt 0
+ 226 0178 97000000 		call	keyscan
+ 226      E7800000 
+ 227              	.LVL25:
+ 228 0180 2A89     		mv	s2,a0
+ 229              	.LVL26:
+  40:main.c        ****               if (pKey==key) c++; else {c=0; pKey=key;}
+ 230              		.loc 1 40 16
+ 231 0182 63440512 		blt	a0,zero,.L20
+  41:main.c        ****               keyNum = lookUpTbl[key];
+ 232              		.loc 1 41 15 is_stmt 1
+  41:main.c        ****               keyNum = lookUpTbl[key];
+ 233              		.loc 1 41 18 is_stmt 0
+ 234 0186 D247     		lw	a5,20(sp)
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 8
+
+
+  41:main.c        ****               keyNum = lookUpTbl[key];
+ 235              		.loc 1 41 31
+ 236 0188 850D     		addi	s11,s11,1
+ 237              	.LVL27:
+  41:main.c        ****               keyNum = lookUpTbl[key];
+ 238              		.loc 1 41 18
+ 239 018a 6303F500 		beq	a0,a5,.L5
+  41:main.c        ****               keyNum = lookUpTbl[key];
+ 240              		.loc 1 41 42
+ 241 018e 814D     		li	s11,0
+ 242              	.LVL28:
+ 243              	.L5:
+  42:main.c        ****               l88mem(1,keyNum+(c<<4));
+ 244              		.loc 1 42 15 is_stmt 1
+  42:main.c        ****               l88mem(1,keyNum+(c<<4));
+ 245              		.loc 1 42 22 is_stmt 0
+ 246 0190 9819     		addi	a4,sp,240
+ 247 0192 93172900 		slli	a5,s2,2
+ 248 0196 BA97     		add	a5,a4,a5
+ 249 0198 03A7C7F5 		lw	a4,-164(a5)
+ 250              	.LVL29:
+  43:main.c        ****               if (entryNr > 0){
+ 251              		.loc 1 43 15 is_stmt 1
+  43:main.c        ****               if (entryNr > 0){
+ 252              		.loc 1 43 33 is_stmt 0
+ 253 019c 93954D00 		slli	a1,s11,4
+  43:main.c        ****               if (entryNr > 0){
+ 254              		.loc 1 43 15
+ 255 01a0 0545     		li	a0,1
+ 256              	.LVL30:
+ 257 01a2 BA95     		add	a1,a1,a4
+ 258 01a4 3ACA     		sw	a4,20(sp)
+ 259 01a6 97000000 		call	l88mem
+ 259      E7800000 
+ 260              	.LVL31:
+  44:main.c        ****                 switch(keyNum){
+ 261              		.loc 1 44 15 is_stmt 1
+ 262 01ae 5247     		lw	a4,20(sp)
+  45:main.c        ****                   case 10:
+ 263              		.loc 1 45 17 is_stmt 0
+ 264 01b0 9546     		li	a3,5
+ 265 01b2 930767FF 		addi	a5,a4,-10
+  44:main.c        ****                 switch(keyNum){
+ 266              		.loc 1 44 18
+ 267 01b6 B1C4     		beq	s1,zero,.L6
+  45:main.c        ****                   case 10:
+ 268              		.loc 1 45 17 is_stmt 1
+ 269 01b8 63EFF602 		bgtu	a5,a3,.L7
+ 270 01bc 7247     		lw	a4,28(sp)
+ 271 01be 8A07     		slli	a5,a5,2
+ 272 01c0 BA97     		add	a5,a5,a4
+ 273 01c2 9C43     		lw	a5,0(a5)
+ 274 01c4 8287     		jr	a5
+ 275              		.section	.rodata.main,"a",@progbits
+ 276              		.align	2
+ 277              		.align	2
+ 278              	.L8:
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 9
+
+
+ 279 0000 00000000 		.word	.L11
+ 280 0004 00000000 		.word	.L10
+ 281 0008 00000000 		.word	.L9
+ 282 000c 00000000 		.word	.L4
+ 283 0010 00000000 		.word	.L4
+ 284 0014 00000000 		.word	.L4
+ 285              		.section	.text.startup.main
+ 286              	.L11:
+ 287 01c6 424B     		lw	s6,16(sp)
+ 288              	.LVL32:
+ 289 01c8 E28A     		mv	s5,s8
+ 290              	.LVL33:
+ 291              	.L4:
+ 106:main.c        ****             l88mem(3,idle); idle=0;
+ 292              		.loc 1 106 13
+ 293 01ca 93D58940 		srai	a1,s3,8
+ 294 01ce 0945     		li	a0,2
+ 295 01d0 97000000 		call	l88mem
+ 295      E7800000 
+ 296              	.LVL34:
+ 297              		.loc 1 107 13
+ 298 01d8 CE85     		mv	a1,s3
+ 299 01da 0D45     		li	a0,3
+ 300 01dc 97000000 		call	l88mem
+ 300      E7800000 
+ 301              	.LVL35:
+ 302              		.loc 1 107 29
+ 303              		.loc 1 107 13 is_stmt 0
+ 304 01e4 4ACA     		sw	s2,20(sp)
+ 305 01e6 2DB7     		j	.L19
+ 306              	.LVL36:
+ 307              	.L10:
+  52:main.c        ****                     posB[1] = temp[1];
+ 308              		.loc 1 52 21 is_stmt 1
+  53:main.c        ****                     entryNr == 0;
+ 309              		.loc 1 53 21
+  54:main.c        ****                     break;
+ 310              		.loc 1 54 21
+  55:main.c        ****                   case 12:
+ 311              		.loc 1 55 21
+ 312 01e8 C247     		lw	a5,16(sp)
+ 313 01ea E28B     		mv	s7,s8
+ 314 01ec 3EC6     		sw	a5,12(sp)
+ 315 01ee F1BF     		j	.L4
+ 316              	.LVL37:
+ 317              	.L9:
+  57:main.c        ****                     entryNr == 0;
+ 318              		.loc 1 57 21
+  58:main.c        ****                     entryMade = 1;
+ 319              		.loc 1 58 21
+  59:main.c        ****                     break;
+ 320              		.loc 1 59 21
+  60:main.c        ****                   case 13:
+ 321              		.loc 1 60 21
+ 322 01f0 628A     		mv	s4,s8
+  59:main.c        ****                     break;
+ 323              		.loc 1 59 31 is_stmt 0
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 10
+
+
+ 324 01f2 0544     		li	s0,1
+  60:main.c        ****                   case 13:
+ 325              		.loc 1 60 21
+ 326 01f4 D9BF     		j	.L4
+ 327              	.LVL38:
+ 328              	.L7:
+  68:main.c        ****                       entryNr++;
+ 329              		.loc 1 68 21 is_stmt 1
+  68:main.c        ****                       entryNr++;
+ 330              		.loc 1 68 24 is_stmt 0
+ 331 01f6 8547     		li	a5,1
+ 332 01f8 E399F4FC 		bne	s1,a5,.L4
+ 333 01fc 3AC8     		sw	a4,16(sp)
+ 334              	.LVL39:
+  69:main.c        ****                       temp[1] = keyNum;
+ 335              		.loc 1 69 30
+ 336 01fe 8944     		li	s1,2
+ 337              	.LVL40:
+ 338 0200 E9B7     		j	.L4
+ 339              	.LVL41:
+ 340              	.L6:
+  75:main.c        ****                   case 10:
+ 341              		.loc 1 75 17 is_stmt 1
+ 342 0202 63E7F600 		bgtu	a5,a3,.L12
+ 343 0206 6247     		lw	a4,24(sp)
+ 344 0208 8A07     		slli	a5,a5,2
+ 345 020a BA97     		add	a5,a5,a4
+ 346 020c 9C43     		lw	a5,0(a5)
+ 347 020e 8287     		jr	a5
+ 348              		.section	.rodata.main
+ 349              		.align	2
+ 350              		.align	2
+ 351              	.L14:
+ 352 0018 00000000 		.word	.L18
+ 353 001c 00000000 		.word	.L17
+ 354 0020 00000000 		.word	.L4
+ 355 0024 00000000 		.word	.L16
+ 356 0028 00000000 		.word	.L15
+ 357 002c 00000000 		.word	.L13
+ 358              		.section	.text.startup.main
+ 359              	.L12:
+ 360 0210 3A8C     		mv	s8,a4
+ 361              	.LVL42:
+ 101:main.c        ****                     break;
+ 362              		.loc 1 101 31 is_stmt 0
+ 363 0212 0144     		li	s0,0
+ 364              	.LVL43:
+  99:main.c        ****                     temp[0] = keyNum;
+ 365              		.loc 1 99 28
+ 366 0214 8544     		li	s1,1
+ 367              	.LVL44:
+ 368 0216 55BF     		j	.L4
+ 369              	.LVL45:
+ 370              	.L18:
+  77:main.c        ****                     break;
+ 371              		.loc 1 77 21 is_stmt 1
+ 372 0218 C167     		li	a5,65536
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 11
+
+
+ 373 021a 13850780 		addi	a0,a5,-2048
+ 374 021e 97000000 		call	LCD_Clear
+ 374      E7800000 
+ 375              	.LVL46:
+  78:main.c        ****                   case 11:
+ 376              		.loc 1 78 21
+ 377 0226 55B7     		j	.L4
+ 378              	.L17:
+  80:main.c        ****                   break;
+ 379              		.loc 1 80 21
+ 380 0228 C167     		li	a5,65536
+ 381 022a 9386F7FF 		addi	a3,a5,-1
+ 382 022e B7070000 		lui	a5,%hi(.LC4)
+ 383 0232 0147     		li	a4,0
+ 384 0234 13860700 		addi	a2,a5,%lo(.LC4)
+ 385 0238 93058004 		li	a1,72
+ 386 023c 13050009 		li	a0,144
+ 387 0240 97000000 		call	LCD_ShowStr
+ 387      E7800000 
+ 388              	.LVL47:
+  81:main.c        ****                   case 12:break;
+ 389              		.loc 1 81 19
+ 390 0248 49B7     		j	.L4
+ 391              	.L16:
+  84:main.c        ****                       LCD_DrawLine(posA[0], posA[1], posB[0], posB[1], colors[col]);
+ 392              		.loc 1 84 21
+  84:main.c        ****                       LCD_DrawLine(posA[0], posA[1], posB[0], posB[1], colors[col]);
+ 393              		.loc 1 84 24 is_stmt 0
+ 394 024a 35C0     		beq	s0,zero,.L23
+  85:main.c        ****                       entryMade = 0;
+ 395              		.loc 1 85 23 is_stmt 1
+  85:main.c        ****                       entryMade = 0;
+ 396              		.loc 1 85 78 is_stmt 0
+ 397 024c 9819     		addi	a4,sp,240
+ 398 024e 93172A00 		slli	a5,s4,2
+ 399 0252 BA97     		add	a5,a4,a5
+  85:main.c        ****                       entryMade = 0;
+ 400              		.loc 1 85 23
+ 401 0254 03A787F3 		lw	a4,-200(a5)
+ 402 0258 B246     		lw	a3,12(sp)
+ 403 025a 5E86     		mv	a2,s7
+ 404 025c DA85     		mv	a1,s6
+ 405 025e 5685     		mv	a0,s5
+ 406 0260 97000000 		call	LCD_DrawLine
+ 406      E7800000 
+ 407              	.LVL48:
+  86:main.c        ****                     }
+ 408              		.loc 1 86 23 is_stmt 1
+ 409              	.L27:
+  92:main.c        ****                     }
+ 410              		.loc 1 92 23
+  92:main.c        ****                     }
+ 411              		.loc 1 92 33 is_stmt 0
+ 412 0268 0144     		li	s0,0
+ 413 026a 85B7     		j	.L4
+ 414              	.LVL49:
+ 415              	.L15:
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 12
+
+
+  90:main.c        ****                       Draw_Circle(posA[0], posA[1], posB[0], colors[col]);
+ 416              		.loc 1 90 21 is_stmt 1
+  90:main.c        ****                       Draw_Circle(posA[0], posA[1], posB[0], colors[col]);
+ 417              		.loc 1 90 24 is_stmt 0
+ 418 026c 29C0     		beq	s0,zero,.L23
+  91:main.c        ****                       entryMade = 0;
+ 419              		.loc 1 91 23 is_stmt 1
+  91:main.c        ****                       entryMade = 0;
+ 420              		.loc 1 91 68 is_stmt 0
+ 421 026e 93172A00 		slli	a5,s4,2
+ 422 0272 9819     		addi	a4,sp,240
+ 423 0274 BA97     		add	a5,a4,a5
+  91:main.c        ****                       entryMade = 0;
+ 424              		.loc 1 91 23
+ 425 0276 83A687F3 		lw	a3,-200(a5)
+ 426 027a 13F6FB0F 		andi	a2,s7,0xff
+ 427 027e DA85     		mv	a1,s6
+ 428 0280 5685     		mv	a0,s5
+ 429 0282 97000000 		call	Draw_Circle
+ 429      E7800000 
+ 430              	.LVL50:
+ 431 028a F9BF     		j	.L27
+ 432              	.L13:
+  96:main.c        ****                     break;
+ 433              		.loc 1 96 21 is_stmt 1
+  96:main.c        ****                     break;
+ 434              		.loc 1 96 72 is_stmt 0
+ 435 028c 9819     		addi	a4,sp,240
+ 436 028e 93172A00 		slli	a5,s4,2
+ 437 0292 BA97     		add	a5,a4,a5
+  96:main.c        ****                     break;
+ 438              		.loc 1 96 21
+ 439 0294 03A787F3 		lw	a4,-200(a5)
+ 440 0298 B246     		lw	a3,12(sp)
+ 441 029a 5E86     		mv	a2,s7
+ 442 029c DA85     		mv	a1,s6
+ 443 029e 5685     		mv	a0,s5
+ 444 02a0 97000000 		call	LCD_Fill
+ 444      E7800000 
+ 445              	.LVL51:
+  97:main.c        ****                   default:
+ 446              		.loc 1 97 21 is_stmt 1
+ 447 02a8 0DB7     		j	.L4
+ 448              	.LVL52:
+ 449              	.L20:
+ 104:main.c        ****             }
+ 450              		.loc 1 104 15 is_stmt 0
+ 451 02aa 5249     		lw	s2,20(sp)
+ 452 02ac 39BF     		j	.L4
+ 453              	.LVL53:
+ 454              	.L23:
+ 455 02ae A284     		mv	s1,s0
+ 456              	.LVL54:
+ 457 02b0 29BF     		j	.L4
+ 458              		.cfi_endproc
+ 459              	.LFE2:
+ 461              		.section	.rodata
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 13
+
+
+ 462              		.align	2
+ 463              		.set	.LANCHOR0,. + 0
+ 464              	.LC0:
+ 465 0000 01000000 		.word	1
+ 466 0004 04000000 		.word	4
+ 467 0008 07000000 		.word	7
+ 468 000c 0E000000 		.word	14
+ 469 0010 02000000 		.word	2
+ 470 0014 05000000 		.word	5
+ 471 0018 08000000 		.word	8
+ 472 001c 00000000 		.word	0
+ 473 0020 03000000 		.word	3
+ 474 0024 06000000 		.word	6
+ 475 0028 09000000 		.word	9
+ 476 002c 0F000000 		.word	15
+ 477 0030 0A000000 		.word	10
+ 478 0034 0B000000 		.word	11
+ 479 0038 0C000000 		.word	12
+ 480 003c 0D000000 		.word	13
+ 481              	.LC1:
+ 482 0040 FFFF0000 		.word	65535
+ 483 0044 00000000 		.word	0
+ 484 0048 1F000000 		.word	31
+ 485 004c 00F80000 		.word	63488
+ 486 0050 1FF80000 		.word	63519
+ 487 0054 E0070000 		.word	2016
+ 488 0058 FF7F0000 		.word	32767
+ 489 005c E0FF0000 		.word	65504
+ 490 0060 CF010000 		.word	463
+ 491              	.LC2:
+ 492 0064 5A65726F 		.string	"Zero "
+ 492      2000
+ 493 006a 00000000 		.zero	4
+ 494 006e 4F6E6520 		.string	"One  "
+ 494      2000
+ 495 0074 00000000 		.zero	4
+ 496 0078 54776F20 		.string	"Two  "
+ 496      2000
+ 497 007e 00000000 		.zero	4
+ 498 0082 54687265 		.string	"Three"
+ 498      6500
+ 499 0088 00000000 		.zero	4
+ 500 008c 466F7572 		.string	"Four "
+ 500      2000
+ 501 0092 00000000 		.zero	4
+ 502 0096 46697665 		.string	"Five "
+ 502      2000
+ 503 009c 00000000 		.zero	4
+ 504 00a0 53697820 		.string	"Six  "
+ 504      2000
+ 505 00a6 00000000 		.zero	4
+ 506 00aa 53657665 		.string	"Seven"
+ 506      6E00
+ 507 00b0 00000000 		.zero	4
+ 508 00b4 45696768 		.string	"Eight"
+ 508      7400
+ 509 00ba 00000000 		.zero	4
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 14
+
+
+ 510 00be 4E696E65 		.string	"Nine "
+ 510      2000
+ 511 00c4 00000000 		.zero	4
+ 512              		.section	.rodata.main.str1.4,"aMS",@progbits,1
+ 513              		.align	2
+ 514              	.LC3:
+ 515 0000 48454152 		.string	"HEARTBEAT:"
+ 515      54424541 
+ 515      543A00
+ 516 000b 00       		.zero	1
+ 517              	.LC4:
+ 518 000c 4E4600   		.string	"NF"
+ 519              		.text
+ 520              	.Letext0:
+ 521              		.file 2 "c:\\users\\forss\\desktop\\toolchain-gd32v-v202-win\\toolchain-gd32v-v202-win\\compiler\\
+ 522              		.file 3 "c:\\users\\forss\\desktop\\toolchain-gd32v-v202-win\\toolchain-gd32v-v202-win\\compiler\\
+ 523              		.file 4 "c:\\users\\forss\\desktop\\toolchain-gd32v-v202-win\\toolchain-gd32v-v202-win\\compiler\\
+ 524              		.file 5 "c:\\users\\forss\\desktop\\toolchain-gd32v-v202-win\\toolchain-gd32v-v202-win\\compiler\\
+ 525              		.file 6 "c:\\users\\forss\\desktop\\toolchain-gd32v-v202-win\\toolchain-gd32v-v202-win\\compiler\\
+ 526              		.file 7 "c:\\users\\forss\\desktop\\toolchain-gd32v-v202-win\\toolchain-gd32v-v202-win\\compiler\\
+ 527              		.file 8 "./../../firmware/GD32VF103_standard_peripheral/system_gd32vf103.h"
+ 528              		.file 9 "c:\\users\\forss\\desktop\\toolchain-gd32v-v202-win\\toolchain-gd32v-v202-win\\compiler\\
+ 529              		.file 10 "lcd.h"
+ 530              		.file 11 "drivers.h"
+ 531              		.file 12 "<built-in>"
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 15
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:13     .text.startup.main:0000000000000000 main
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:17     .text.startup.main:0000000000000000 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:18     .text.startup.main:0000000000000000 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:20     .text.startup.main:0000000000000000 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:21     .text.startup.main:0000000000000000 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:22     .text.startup.main:0000000000000000 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:24     .text.startup.main:0000000000000002 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:26     .text.startup.main:0000000000000002 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:28     .text.startup.main:0000000000000006 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:30     .text.startup.main:000000000000000a .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:31     .text.startup.main:000000000000000e .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:36     .text.startup.main:0000000000000018 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:48     .text.startup.main:0000000000000046 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:49     .text.startup.main:0000000000000046 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:50     .text.startup.main:0000000000000046 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:51     .text.startup.main:0000000000000046 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:52     .text.startup.main:0000000000000046 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:53     .text.startup.main:0000000000000046 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:54     .text.startup.main:0000000000000046 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:55     .text.startup.main:0000000000000046 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:56     .text.startup.main:0000000000000046 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:57     .text.startup.main:0000000000000046 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:58     .text.startup.main:0000000000000046 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:59     .text.startup.main:0000000000000046 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:61     .text.startup.main:0000000000000046 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:64     .text.startup.main:000000000000004e .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:65     .text.startup.main:000000000000004e .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:66     .text.startup.main:000000000000004e .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:67     .text.startup.main:000000000000004e .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:73     .text.startup.main:0000000000000060 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:74     .text.startup.main:0000000000000060 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:80     .text.startup.main:0000000000000072 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:81     .text.startup.main:0000000000000072 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:82     .text.startup.main:0000000000000072 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:83     .text.startup.main:0000000000000072 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:84     .text.startup.main:0000000000000072 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:85     .text.startup.main:0000000000000072 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:86     .text.startup.main:0000000000000072 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:87     .text.startup.main:0000000000000072 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:90     .text.startup.main:000000000000007a .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:93     .text.startup.main:0000000000000082 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:96     .text.startup.main:000000000000008a .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:99     .text.startup.main:0000000000000092 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:103    .text.startup.main:000000000000009c .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:104    .text.startup.main:000000000000009c .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:106    .text.startup.main:000000000000009e .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:109    .text.startup.main:00000000000000a6 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:113    .text.startup.main:00000000000000b2 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:122    .text.startup.main:00000000000000cc .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:130    .text.startup.main:00000000000000e0 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:133    .text.startup.main:00000000000000e4 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:137    .text.startup.main:00000000000000ee .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:140    .text.startup.main:00000000000000f6 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:143    .text.startup.main:00000000000000fa .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:146    .text.startup.main:00000000000000fe .L0 
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 16
+
+
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:149    .text.startup.main:0000000000000102 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:151    .text.startup.main:0000000000000104 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:153    .text.startup.main:0000000000000106 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:155    .text.startup.main:0000000000000108 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:157    .text.startup.main:000000000000010a .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:159    .text.startup.main:000000000000010c .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:161    .text.startup.main:000000000000010e .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:165    .text.startup.main:0000000000000110 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:169    .text.startup.main:0000000000000112 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:170    .text.startup.main:0000000000000112 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:171    .text.startup.main:0000000000000112 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:174    .text.startup.main:0000000000000114 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:177    .text.startup.main:000000000000011c .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:178    .text.startup.main:000000000000011c .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:181    .text.startup.main:0000000000000124 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:183    .text.startup.main:0000000000000126 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:188    .text.startup.main:0000000000000136 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:189    .text.startup.main:0000000000000136 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:195    .text.startup.main:0000000000000140 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:196    .text.startup.main:0000000000000140 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:197    .text.startup.main:0000000000000140 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:200    .text.startup.main:0000000000000146 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:204    .text.startup.main:000000000000014e .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:206    .text.startup.main:0000000000000152 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:208    .text.startup.main:0000000000000154 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:210    .text.startup.main:0000000000000158 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:217    .text.startup.main:000000000000016a .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:225    .text.startup.main:0000000000000178 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:226    .text.startup.main:0000000000000178 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:231    .text.startup.main:0000000000000182 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:233    .text.startup.main:0000000000000186 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:234    .text.startup.main:0000000000000186 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:236    .text.startup.main:0000000000000188 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:239    .text.startup.main:000000000000018a .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:241    .text.startup.main:000000000000018e .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:245    .text.startup.main:0000000000000190 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:246    .text.startup.main:0000000000000190 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:252    .text.startup.main:000000000000019c .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:253    .text.startup.main:000000000000019c .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:255    .text.startup.main:00000000000001a0 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:262    .text.startup.main:00000000000001ae .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:264    .text.startup.main:00000000000001b0 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:267    .text.startup.main:00000000000001b6 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:269    .text.startup.main:00000000000001b8 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:293    .text.startup.main:00000000000001ca .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:298    .text.startup.main:00000000000001d8 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:303    .text.startup.main:00000000000001e4 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:304    .text.startup.main:00000000000001e4 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:309    .text.startup.main:00000000000001e8 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:310    .text.startup.main:00000000000001e8 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:311    .text.startup.main:00000000000001e8 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:312    .text.startup.main:00000000000001e8 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:319    .text.startup.main:00000000000001f0 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:320    .text.startup.main:00000000000001f0 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:321    .text.startup.main:00000000000001f0 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:322    .text.startup.main:00000000000001f0 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:324    .text.startup.main:00000000000001f2 .L0 
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 17
+
+
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:326    .text.startup.main:00000000000001f4 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:330    .text.startup.main:00000000000001f6 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:331    .text.startup.main:00000000000001f6 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:336    .text.startup.main:00000000000001fe .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:342    .text.startup.main:0000000000000202 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:363    .text.startup.main:0000000000000212 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:366    .text.startup.main:0000000000000214 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:372    .text.startup.main:0000000000000218 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:377    .text.startup.main:0000000000000226 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:380    .text.startup.main:0000000000000228 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:390    .text.startup.main:0000000000000248 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:393    .text.startup.main:000000000000024a .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:394    .text.startup.main:000000000000024a .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:396    .text.startup.main:000000000000024c .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:397    .text.startup.main:000000000000024c .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:401    .text.startup.main:0000000000000254 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:410    .text.startup.main:0000000000000268 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:411    .text.startup.main:0000000000000268 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:412    .text.startup.main:0000000000000268 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:417    .text.startup.main:000000000000026c .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:418    .text.startup.main:000000000000026c .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:420    .text.startup.main:000000000000026e .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:421    .text.startup.main:000000000000026e .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:425    .text.startup.main:0000000000000276 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:434    .text.startup.main:000000000000028c .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:435    .text.startup.main:000000000000028c .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:439    .text.startup.main:0000000000000294 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:447    .text.startup.main:00000000000002a8 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:451    .text.startup.main:00000000000002aa .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:458    .text.startup.main:00000000000002b2 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:463    .rodata:0000000000000000 .LANCHOR0
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:461    .text.startup.main:00000000000002b2 .L0 
+                     .debug_frame:0000000000000000 .L0 
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:514    .rodata.main.str1.4:0000000000000000 .LC3
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:351    .rodata.main:0000000000000018 .L14
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:278    .rodata.main:0000000000000000 .L8
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:517    .rodata.main.str1.4:000000000000000c .LC4
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:167    .text.startup.main:0000000000000112 .L2
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:223    .text.startup.main:0000000000000178 .L3
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:449    .text.startup.main:00000000000002aa .L20
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:243    .text.startup.main:0000000000000190 .L5
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:340    .text.startup.main:0000000000000202 .L6
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:328    .text.startup.main:00000000000001f6 .L7
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:163    .text.startup.main:0000000000000110 .L19
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:291    .text.startup.main:00000000000001ca .L4
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:359    .text.startup.main:0000000000000210 .L12
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:454    .text.startup.main:00000000000002ae .L23
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:409    .text.startup.main:0000000000000268 .L27
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:286    .text.startup.main:00000000000001c6 .L11
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:307    .text.startup.main:00000000000001e8 .L10
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:317    .text.startup.main:00000000000001f0 .L9
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:370    .text.startup.main:0000000000000218 .L18
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:378    .text.startup.main:0000000000000228 .L17
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:391    .text.startup.main:000000000000024a .L16
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:415    .text.startup.main:000000000000026c .L15
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:432    .text.startup.main:000000000000028c .L13
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:2726   .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 18
+
+
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4043   .debug_str:000000000000052e .LASF156
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3911   .debug_str:000000000000028a .LASF157
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3929   .debug_str:00000000000002cd .LASF158
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3767   .debug_ranges:0000000000000000 .Ldebug_ranges0
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3773   .debug_line:0000000000000000 .Ldebug_line0
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4031   .debug_str:00000000000004f2 .LASF0
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3817   .debug_str:00000000000000e0 .LASF1
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3961   .debug_str:00000000000003bd .LASF2
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3777   .debug_str:000000000000000c .LASF3
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3859   .debug_str:000000000000019f .LASF4
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3787   .debug_str:000000000000003a .LASF5
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3865   .debug_str:00000000000001bc .LASF9
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3889   .debug_str:0000000000000225 .LASF6
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3849   .debug_str:0000000000000162 .LASF7
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3797   .debug_str:0000000000000075 .LASF8
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4059   .debug_str:00000000000005fe .LASF10
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3883   .debug_str:0000000000000205 .LASF120
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4019   .debug_str:00000000000004c1 .LASF11
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4007   .debug_str:0000000000000492 .LASF12
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3813   .debug_str:00000000000000d2 .LASF13
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4017   .debug_str:00000000000004b9 .LASF14
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4067   .debug_str:000000000000061f .LASF15
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3907   .debug_str:000000000000027d .LASF16
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3881   .debug_str:00000000000001fe .LASF17
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4009   .debug_str:0000000000000499 .LASF18
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4011   .debug_str:00000000000004a1 .LASF19
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3981   .debug_str:0000000000000414 .LASF20
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4053   .debug_str:00000000000005d6 .LASF21
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3957   .debug_str:00000000000003a3 .LASF22
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3967   .debug_str:00000000000003da .LASF23
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3873   .debug_str:00000000000001e1 .LASF28
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4039   .debug_str:000000000000051b .LASF24
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4001   .debug_str:000000000000047d .LASF25
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3867   .debug_str:00000000000001c7 .LASF26
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4063   .debug_str:0000000000000614 .LASF27
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3879   .debug_str:00000000000001f9 .LASF29
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3809   .debug_str:00000000000000c2 .LASF30
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4083   .debug_str:000000000000066a .LASF31
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3827   .debug_str:0000000000000108 .LASF32
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4099   .debug_str:00000000000006a8 .LASF33
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3933   .debug_str:000000000000032d .LASF34
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4021   .debug_str:00000000000004cd .LASF35
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4015   .debug_str:00000000000004af .LASF36
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3969   .debug_str:00000000000003e3 .LASF37
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4079   .debug_str:0000000000000650 .LASF38
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3831   .debug_str:0000000000000117 .LASF39
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3779   .debug_str:0000000000000016 .LASF40
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3775   .debug_str:0000000000000000 .LASF41
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4033   .debug_str:00000000000004ff .LASF42
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3845   .debug_str:0000000000000153 .LASF43
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3935   .debug_str:0000000000000336 .LASF44
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3991   .debug_str:0000000000000441 .LASF45
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3863   .debug_str:00000000000001b7 .LASF46
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3973   .debug_str:00000000000003f7 .LASF47
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3823   .debug_str:00000000000000fa .LASF48
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4029   .debug_str:00000000000004ec .LASF49
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3983   .debug_str:000000000000041f .LASF50
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 19
+
+
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3843   .debug_str:000000000000014c .LASF51
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3891   .debug_str:0000000000000237 .LASF52
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3799   .debug_str:000000000000008c .LASF53
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3835   .debug_str:000000000000012d .LASF54
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3875   .debug_str:00000000000001e9 .LASF55
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3923   .debug_str:00000000000002b8 .LASF56
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4013   .debug_str:00000000000004a9 .LASF57
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3815   .debug_str:00000000000000d9 .LASF58
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3819   .debug_str:00000000000000ec .LASF59
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4073   .debug_str:000000000000063c .LASF60
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4027   .debug_str:00000000000004e3 .LASF61
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3853   .debug_str:0000000000000178 .LASF62
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3895   .debug_str:0000000000000244 .LASF63
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3917   .debug_str:00000000000002a7 .LASF64
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3985   .debug_str:0000000000000427 .LASF65
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3975   .debug_str:00000000000003fe .LASF66
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4003   .debug_str:0000000000000485 .LASF67
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4023   .debug_str:00000000000004d7 .LASF68
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3847   .debug_str:000000000000015b .LASF69
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3885   .debug_str:0000000000000215 .LASF70
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3871   .debug_str:00000000000001d9 .LASF71
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3989   .debug_str:000000000000043c .LASF72
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3783   .debug_str:0000000000000026 .LASF73
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3999   .debug_str:0000000000000464 .LASF74
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3995   .debug_str:0000000000000452 .LASF75
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3941   .debug_str:0000000000000355 .LASF76
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3997   .debug_str:000000000000045a .LASF77
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3905   .debug_str:0000000000000275 .LASF78
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3877   .debug_str:00000000000001ef .LASF79
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4093   .debug_str:0000000000000699 .LASF80
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3951   .debug_str:0000000000000383 .LASF81
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3887   .debug_str:000000000000021d .LASF82
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3851   .debug_str:0000000000000170 .LASF83
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3913   .debug_str:0000000000000291 .LASF84
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3785   .debug_str:0000000000000031 .LASF85
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4071   .debug_str:0000000000000632 .LASF86
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3837   .debug_str:0000000000000135 .LASF87
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3829   .debug_str:0000000000000112 .LASF88
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4025   .debug_str:00000000000004de .LASF89
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3979   .debug_str:000000000000040d .LASF90
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4065   .debug_str:0000000000000619 .LASF91
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3897   .debug_str:000000000000024a .LASF92
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3963   .debug_str:00000000000003cb .LASF93
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3781   .debug_str:000000000000001e .LASF94
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4005   .debug_str:000000000000048c .LASF95
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3919   .debug_str:00000000000002ad .LASF96
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4049   .debug_str:00000000000005ca .LASF97
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4061   .debug_str:0000000000000607 .LASF98
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4041   .debug_str:0000000000000521 .LASF99
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3903   .debug_str:0000000000000268 .LASF100
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4081   .debug_str:000000000000065b .LASF101
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3943   .debug_str:0000000000000360 .LASF102
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3899   .debug_str:0000000000000251 .LASF103
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4085   .debug_str:0000000000000673 .LASF104
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3939   .debug_str:0000000000000348 .LASF105
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4091   .debug_str:000000000000068b .LASF106
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3807   .debug_str:00000000000000b4 .LASF107
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 20
+
+
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4069   .debug_str:0000000000000628 .LASF108
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3901   .debug_str:000000000000025c .LASF109
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4055   .debug_str:00000000000005de .LASF110
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3857   .debug_str:0000000000000191 .LASF111
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3805   .debug_str:00000000000000a5 .LASF112
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3855   .debug_str:0000000000000180 .LASF113
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3789   .debug_str:0000000000000043 .LASF114
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3791   .debug_str:0000000000000052 .LASF115
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3965   .debug_str:00000000000003d1 .LASF116
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3931   .debug_str:0000000000000326 .LASF117
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3927   .debug_str:00000000000002c4 .LASF118
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4075   .debug_str:0000000000000642 .LASF119
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3801   .debug_str:0000000000000095 .LASF159
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3869   .debug_str:00000000000001cd .LASF121
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4057   .debug_str:00000000000005eb .LASF122
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3937   .debug_str:000000000000033e .LASF123
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3795   .debug_str:000000000000006a .LASF124
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4097   .debug_str:00000000000006a3 .LASF160
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:14     .text.startup.main:0000000000000000 .LFB2
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:459    .text.startup.main:00000000000002b2 .LFE2
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3352   .debug_loc:0000000000000000 .LLST0
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3365   .debug_loc:0000000000000021 .LLST1
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3386   .debug_loc:0000000000000057 .LLST2
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3406   .debug_loc:000000000000008c .LLST3
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3803   .debug_str:00000000000000a0 .LASF125
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3429   .debug_loc:00000000000000cb .LLST4
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3460   .debug_loc:000000000000011b .LLST5
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3949   .debug_str:000000000000037e .LASF126
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3482   .debug_loc:0000000000000152 .LLST6
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4087   .debug_str:0000000000000678 .LASF127
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4077   .debug_str:000000000000064a .LASF128
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4095   .debug_str:000000000000069e .LASF129
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3861   .debug_str:00000000000001b2 .LASF130
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3945   .debug_str:000000000000036f .LASF131
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4045   .debug_str:00000000000005b6 .LASF132
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3971   .debug_str:00000000000003ed .LASF133
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3503   .debug_loc:0000000000000188 .LLST7
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3839   .debug_str:000000000000013d .LASF134
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3537   .debug_loc:00000000000001e0 .LLST8
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3921   .debug_str:00000000000002b3 .LASF135
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3608   .debug_loc:0000000000000262 .LLST9
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3925   .debug_str:00000000000002bf .LASF136
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3648   .debug_loc:00000000000002ab .LLST10
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3692   .debug_loc:00000000000002fb .LLST11
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3793   .debug_str:0000000000000063 .LASF137
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3712   .debug_loc:0000000000000330 .LLST12
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3947   .debug_str:0000000000000376 .LASF138
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3734   .debug_loc:000000000000036a .LLST13
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:62     .text.startup.main:000000000000004e .LVL1
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:71     .text.startup.main:0000000000000060 .LVL2
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:78     .text.startup.main:0000000000000072 .LVL3
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:88     .text.startup.main:000000000000007a .LVL4
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:91     .text.startup.main:0000000000000082 .LVL5
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:94     .text.startup.main:000000000000008a .LVL6
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:97     .text.startup.main:0000000000000092 .LVL7
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:101    .text.startup.main:000000000000009c .LVL8
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:107    .text.startup.main:00000000000000a6 .LVL9
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 21
+
+
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:111    .text.startup.main:00000000000000b2 .LVL10
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:120    .text.startup.main:00000000000000cc .LVL11
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:128    .text.startup.main:00000000000000e0 .LVL12
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:175    .text.startup.main:000000000000011c .LVL16
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:179    .text.startup.main:0000000000000124 .LVL17
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:184    .text.startup.main:000000000000012e .LVL18
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:186    .text.startup.main:0000000000000136 .LVL19
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:215    .text.startup.main:000000000000016a .LVL22
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:220    .text.startup.main:0000000000000176 .LVL23
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:227    .text.startup.main:0000000000000180 .LVL25
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:260    .text.startup.main:00000000000001ae .LVL31
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:296    .text.startup.main:00000000000001d8 .LVL34
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:301    .text.startup.main:00000000000001e4 .LVL35
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:375    .text.startup.main:0000000000000226 .LVL46
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:388    .text.startup.main:0000000000000248 .LVL47
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:407    .text.startup.main:0000000000000268 .LVL48
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:430    .text.startup.main:000000000000028a .LVL50
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:445    .text.startup.main:00000000000002a8 .LVL51
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3909   .debug_str:0000000000000283 .LASF161
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3915   .debug_str:0000000000000296 .LASF162
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4051   .debug_str:00000000000005cf .LASF139
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3833   .debug_str:0000000000000125 .LASF140
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3959   .debug_str:00000000000003b5 .LASF141
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3821   .debug_str:00000000000000f2 .LASF142
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3987   .debug_str:0000000000000430 .LASF143
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4089   .debug_str:0000000000000682 .LASF144
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3841   .debug_str:0000000000000142 .LASF145
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4037   .debug_str:000000000000050f .LASF146
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3955   .debug_str:000000000000039a .LASF147
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3953   .debug_str:000000000000038d .LASF148
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3977   .debug_str:0000000000000406 .LASF149
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3811   .debug_str:00000000000000cb .LASF150
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4035   .debug_str:0000000000000508 .LASF151
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3893   .debug_str:000000000000023d .LASF152
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3825   .debug_str:0000000000000100 .LASF153
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:4047   .debug_str:00000000000005bd .LASF154
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:3993   .debug_str:0000000000000446 .LASF155
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:23     .text.startup.main:0000000000000002 .LCFI0
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:19     .text.startup.main:0000000000000000 .LVL0
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:162    .text.startup.main:0000000000000110 .LVL13
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:166    .text.startup.main:0000000000000112 .LVL14
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:194    .text.startup.main:0000000000000140 .LVL21
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:222    .text.startup.main:0000000000000178 .LVL24
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:229    .text.startup.main:0000000000000182 .LVL26
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:256    .text.startup.main:00000000000001a2 .LVL30
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:290    .text.startup.main:00000000000001ca .LVL33
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:306    .text.startup.main:00000000000001e8 .LVL36
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:448    .text.startup.main:00000000000002aa .LVL52
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:453    .text.startup.main:00000000000002ae .LVL53
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:242    .text.startup.main:0000000000000190 .LVL28
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:237    .text.startup.main:000000000000018a .LVL27
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:316    .text.startup.main:00000000000001f0 .LVL37
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:327    .text.startup.main:00000000000001f6 .LVL38
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:364    .text.startup.main:0000000000000214 .LVL43
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:369    .text.startup.main:0000000000000218 .LVL45
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:414    .text.startup.main:000000000000026c .LVL49
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:334    .text.startup.main:00000000000001fe .LVL39
+GAS LISTING C:\Users\forss\AppData\Local\Temp\cczjbkOi.s 			page 22
+
+
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:339    .text.startup.main:0000000000000202 .LVL41
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:361    .text.startup.main:0000000000000212 .LVL42
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:288    .text.startup.main:00000000000001c8 .LVL32
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:250    .text.startup.main:000000000000019c .LVL29
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:337    .text.startup.main:0000000000000200 .LVL40
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:367    .text.startup.main:0000000000000216 .LVL44
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:456    .text.startup.main:00000000000002b0 .LVL54
+C:\Users\forss\AppData\Local\Temp\cczjbkOi.s:533    .debug_info:0000000000000000 .Ldebug_info0
+
+UNDEFINED SYMBOLS
+memcpy
+t5omsi
+colinit
+l88init
+keyinit
+Lcd_SetType
+Lcd_Init
+LCD_Clear
+LCD_ShowStr
+LCD_Fill
+LCD_WR_Queue
+t5expq
+colset
+l88row
+l88mem
+keyscan
+LCD_DrawLine
+Draw_Circle
